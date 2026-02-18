@@ -1,1 +1,570 @@
-<p>item works!</p>
+<!-- Item Management -->
+<div class="space-y-6">
+    <!-- Page Header -->
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div>
+            <h1 class="text-2xl sm:text-3xl font-bold text-heading">Item Management</h1>
+            <p class="text-sm text-body mt-1">Manage your product inventory and pricing</p>
+        </div>
+        <button type="button" data-modal-target="item-modal" data-modal-toggle="item-modal"
+            class="text-white bg-brand hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium font-medium rounded-base text-sm px-5 py-2.5 inline-flex items-center">
+            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+            </svg>
+            Add New Item
+        </button>
+    </div>
+
+    <!-- Statistics Cards -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="bg-primary-soft border border-default rounded-base p-4">
+            <div class="flex items-center justify-between">
+                <div>
+                    <p class="text-sm text-body">Total Items</p>
+                    <h3 class="text-2xl font-bold text-heading mt-1">573</h3>
+                </div>
+                <div class="p-3 bg-brand-soft rounded-full">
+                    <svg class="w-6 h-6 text-brand-strong" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                    </svg>
+                </div>
+            </div>
+        </div>
+        <div class="bg-primary-soft border border-default rounded-base p-4">
+            <div class="flex items-center justify-between">
+                <div>
+                    <p class="text-sm text-body">In Stock</p>
+                    <h3 class="text-2xl font-bold text-heading mt-1">485</h3>
+                </div>
+                <div class="p-3 bg-success-soft rounded-full">
+                    <svg class="w-6 h-6 text-success-strong" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                </div>
+            </div>
+        </div>
+        <div class="bg-primary-soft border border-default rounded-base p-4">
+            <div class="flex items-center justify-between">
+                <div>
+                    <p class="text-sm text-body">Low Stock</p>
+                    <h3 class="text-2xl font-bold text-heading mt-1">45</h3>
+                </div>
+                <div class="p-3 bg-warning-soft rounded-full">
+                    <svg class="w-6 h-6 text-warning-strong" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                    </svg>
+                </div>
+            </div>
+        </div>
+        <div class="bg-primary-soft border border-default rounded-base p-4">
+            <div class="flex items-center justify-between">
+                <div>
+                    <p class="text-sm text-body">Out of Stock</p>
+                    <h3 class="text-2xl font-bold text-heading mt-1">43</h3>
+                </div>
+                <div class="p-3 bg-danger-soft rounded-full">
+                    <svg class="w-6 h-6 text-danger-strong" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Filters and View Toggle -->
+    <div class="bg-primary-soft border border-default rounded-base p-4">
+        <div class="flex flex-col lg:flex-row gap-4 items-start lg:items-center justify-between">
+            <div class="flex flex-col sm:flex-row gap-3 flex-1 w-full">
+                <!-- Search -->
+                <div class="flex-1">
+                    <label for="search-item" class="sr-only">Search</label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                            <svg class="w-4 h-4 text-body" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                            </svg>
+                        </div>
+                        <input type="search" id="search-item"
+                            class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full pl-10 p-2.5"
+                            placeholder="Search items by name, code...">
+                    </div>
+                </div>
+                <!-- Category Filter -->
+                <select
+                    class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand px-4 py-2.5">
+                    <option selected>All Categories</option>
+                    <option value="electronics">Electronics</option>
+                    <option value="clothing">Clothing</option>
+                    <option value="food">Food & Beverages</option>
+                    <option value="home">Home & Garden</option>
+                </select>
+                <!-- Stock Filter -->
+                <select
+                    class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand px-4 py-2.5">
+                    <option selected>All Stock</option>
+                    <option value="in-stock">In Stock</option>
+                    <option value="low-stock">Low Stock</option>
+                    <option value="out-of-stock">Out of Stock</option>
+                </select>
+            </div>
+            <!-- View Toggle -->
+            <div class="flex gap-2">
+                <button type="button" id="grid-view-btn"
+                    class="text-white bg-brand border border-brand hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium font-medium rounded-base text-sm p-2.5">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+                    </svg>
+                </button>
+                <button type="button" id="table-view-btn"
+                    class="text-heading bg-neutral-tertiary border border-default hover:bg-neutral-secondary-medium focus:ring-4 focus:ring-neutral-tertiary font-medium rounded-base text-sm p-2.5">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 10h16M4 14h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Grid View -->
+    <div id="grid-view" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        <!-- Item Card 1 -->
+        <div class="bg-primary-soft border border-default rounded-base overflow-hidden hover:shadow-lg transition-shadow">
+            <div class="relative">
+                <img class="w-full h-48 object-cover bg-neutral-tertiary"
+                    src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-1.jpg" alt="Product">
+                <span
+                    class="absolute top-2 right-2 text-xs font-medium px-2.5 py-1 rounded-full bg-success-soft text-success-strong border border-success-subtle">In
+                    Stock</span>
+            </div>
+            <div class="p-4">
+                <div class="flex items-start justify-between mb-2">
+                    <h5 class="text-lg font-semibold text-heading">Premium Widget</h5>
+                    <button type="button" class="text-body hover:text-heading">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" />
+                        </svg>
+                    </button>
+                </div>
+                <p class="text-xs text-body mb-3">Code: ITM-001 | Category: Electronics</p>
+                <div class="flex items-center justify-between mb-3">
+                    <span class="text-2xl font-bold text-heading">$245.00</span>
+                    <span class="text-sm text-body">Stock: <span class="font-semibold text-heading">125</span></span>
+                </div>
+                <div class="flex gap-2">
+                    <button type="button"
+                        class="flex-1 text-white bg-brand hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium font-medium rounded-base text-sm px-3 py-2">
+                        Edit
+                    </button>
+                    <button type="button"
+                        class="text-danger-strong hover:text-danger-strong-hover border border-danger-subtle bg-danger-soft hover:bg-danger-medium focus:ring-4 focus:ring-danger-medium font-medium rounded-base text-sm px-3 py-2">
+                        Delete
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Item Card 2 -->
+        <div class="bg-primary-soft border border-default rounded-base overflow-hidden hover:shadow-lg transition-shadow">
+            <div class="relative">
+                <img class="w-full h-48 object-cover bg-neutral-tertiary"
+                    src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-2.jpg" alt="Product">
+                <span
+                    class="absolute top-2 right-2 text-xs font-medium px-2.5 py-1 rounded-full bg-success-soft text-success-strong border border-success-subtle">In
+                    Stock</span>
+            </div>
+            <div class="p-4">
+                <div class="flex items-start justify-between mb-2">
+                    <h5 class="text-lg font-semibold text-heading">Deluxe Package</h5>
+                    <button type="button" class="text-body hover:text-heading">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" />
+                        </svg>
+                    </button>
+                </div>
+                <p class="text-xs text-body mb-3">Code: ITM-002 | Category: Home & Garden</p>
+                <div class="flex items-center justify-between mb-3">
+                    <span class="text-2xl font-bold text-heading">$189.99</span>
+                    <span class="text-sm text-body">Stock: <span class="font-semibold text-heading">89</span></span>
+                </div>
+                <div class="flex gap-2">
+                    <button type="button"
+                        class="flex-1 text-white bg-brand hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium font-medium rounded-base text-sm px-3 py-2">
+                        Edit
+                    </button>
+                    <button type="button"
+                        class="text-danger-strong hover:text-danger-strong-hover border border-danger-subtle bg-danger-soft hover:bg-danger-medium focus:ring-4 focus:ring-danger-medium font-medium rounded-base text-sm px-3 py-2">
+                        Delete
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Item Card 3 -->
+        <div class="bg-primary-soft border border-default rounded-base overflow-hidden hover:shadow-lg transition-shadow">
+            <div class="relative">
+                <img class="w-full h-48 object-cover bg-neutral-tertiary"
+                    src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-3.jpg" alt="Product">
+                <span
+                    class="absolute top-2 right-2 text-xs font-medium px-2.5 py-1 rounded-full bg-warning-soft text-warning-strong border border-warning-subtle">Low
+                    Stock</span>
+            </div>
+            <div class="p-4">
+                <div class="flex items-start justify-between mb-2">
+                    <h5 class="text-lg font-semibold text-heading">Standard Item</h5>
+                    <button type="button" class="text-body hover:text-heading">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" />
+                        </svg>
+                    </button>
+                </div>
+                <p class="text-xs text-body mb-3">Code: ITM-003 | Category: Clothing</p>
+                <div class="flex items-center justify-between mb-3">
+                    <span class="text-2xl font-bold text-heading">$75.50</span>
+                    <span class="text-sm text-body">Stock: <span class="font-semibold text-warning-strong">8</span></span>
+                </div>
+                <div class="flex gap-2">
+                    <button type="button"
+                        class="flex-1 text-white bg-brand hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium font-medium rounded-base text-sm px-3 py-2">
+                        Edit
+                    </button>
+                    <button type="button"
+                        class="text-danger-strong hover:text-danger-strong-hover border border-danger-subtle bg-danger-soft hover:bg-danger-medium focus:ring-4 focus:ring-danger-medium font-medium rounded-base text-sm px-3 py-2">
+                        Delete
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Item Card 4 -->
+        <div class="bg-primary-soft border border-default rounded-base overflow-hidden hover:shadow-lg transition-shadow">
+            <div class="relative">
+                <img class="w-full h-48 object-cover bg-neutral-tertiary"
+                    src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-4.jpg" alt="Product">
+                <span
+                    class="absolute top-2 right-2 text-xs font-medium px-2.5 py-1 rounded-full bg-danger-soft text-danger-strong border border-danger-subtle">Out
+                    of Stock</span>
+            </div>
+            <div class="p-4">
+                <div class="flex items-start justify-between mb-2">
+                    <h5 class="text-lg font-semibold text-heading">Basic Bundle</h5>
+                    <button type="button" class="text-body hover:text-heading">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" />
+                        </svg>
+                    </button>
+                </div>
+                <p class="text-xs text-body mb-3">Code: ITM-004 | Category: Food & Beverages</p>
+                <div class="flex items-center justify-between mb-3">
+                    <span class="text-2xl font-bold text-heading">$45.00</span>
+                    <span class="text-sm text-body">Stock: <span class="font-semibold text-danger-strong">0</span></span>
+                </div>
+                <div class="flex gap-2">
+                    <button type="button"
+                        class="flex-1 text-white bg-brand hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium font-medium rounded-base text-sm px-3 py-2">
+                        Edit
+                    </button>
+                    <button type="button"
+                        class="text-danger-strong hover:text-danger-strong-hover border border-danger-subtle bg-danger-soft hover:bg-danger-medium focus:ring-4 focus:ring-danger-medium font-medium rounded-base text-sm px-3 py-2">
+                        Delete
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Item Card 5 -->
+        <div class="bg-primary-soft border border-default rounded-base overflow-hidden hover:shadow-lg transition-shadow">
+            <div class="relative">
+                <img class="w-full h-48 object-cover bg-neutral-tertiary"
+                    src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-5.jpg" alt="Product">
+                <span
+                    class="absolute top-2 right-2 text-xs font-medium px-2.5 py-1 rounded-full bg-success-soft text-success-strong border border-success-subtle">In
+                    Stock</span>
+            </div>
+            <div class="p-4">
+                <div class="flex items-start justify-between mb-2">
+                    <h5 class="text-lg font-semibold text-heading">Pro Series</h5>
+                    <button type="button" class="text-body hover:text-heading">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" />
+                        </svg>
+                    </button>
+                </div>
+                <p class="text-xs text-body mb-3">Code: ITM-005 | Category: Electronics</p>
+                <div class="flex items-center justify-between mb-3">
+                    <span class="text-2xl font-bold text-heading">$329.99</span>
+                    <span class="text-sm text-body">Stock: <span class="font-semibold text-heading">56</span></span>
+                </div>
+                <div class="flex gap-2">
+                    <button type="button"
+                        class="flex-1 text-white bg-brand hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium font-medium rounded-base text-sm px-3 py-2">
+                        Edit
+                    </button>
+                    <button type="button"
+                        class="text-danger-strong hover:text-danger-strong-hover border border-danger-subtle bg-danger-soft hover:bg-danger-medium focus:ring-4 focus:ring-danger-medium font-medium rounded-base text-sm px-3 py-2">
+                        Delete
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Item Card 6 -->
+        <div class="bg-primary-soft border border-default rounded-base overflow-hidden hover:shadow-lg transition-shadow">
+            <div class="relative">
+                <img class="w-full h-48 object-cover bg-neutral-tertiary"
+                    src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-6.jpg" alt="Product">
+                <span
+                    class="absolute top-2 right-2 text-xs font-medium px-2.5 py-1 rounded-full bg-success-soft text-success-strong border border-success-subtle">In
+                    Stock</span>
+            </div>
+            <div class="p-4">
+                <div class="flex items-start justify-between mb-2">
+                    <h5 class="text-lg font-semibold text-heading">Smart Device</h5>
+                    <button type="button" class="text-body hover:text-heading">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" />
+                        </svg>
+                    </button>
+                </div>
+                <p class="text-xs text-body mb-3">Code: ITM-006 | Category: Electronics</p>
+                <div class="flex items-center justify-between mb-3">
+                    <span class="text-2xl font-bold text-heading">$159.00</span>
+                    <span class="text-sm text-body">Stock: <span class="font-semibold text-heading">234</span></span>
+                </div>
+                <div class="flex gap-2">
+                    <button type="button"
+                        class="flex-1 text-white bg-brand hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium font-medium rounded-base text-sm px-3 py-2">
+                        Edit
+                    </button>
+                    <button type="button"
+                        class="text-danger-strong hover:text-danger-strong-hover border border-danger-subtle bg-danger-soft hover:bg-danger-medium focus:ring-4 focus:ring-danger-medium font-medium rounded-base text-sm px-3 py-2">
+                        Delete
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Item Card 7 -->
+        <div class="bg-primary-soft border border-default rounded-base overflow-hidden hover:shadow-lg transition-shadow">
+            <div class="relative">
+                <img class="w-full h-48 object-cover bg-neutral-tertiary"
+                    src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-7.jpg" alt="Product">
+                <span
+                    class="absolute top-2 right-2 text-xs font-medium px-2.5 py-1 rounded-full bg-warning-soft text-warning-strong border border-warning-subtle">Low
+                    Stock</span>
+            </div>
+            <div class="p-4">
+                <div class="flex items-start justify-between mb-2">
+                    <h5 class="text-lg font-semibold text-heading">Comfort Set</h5>
+                    <button type="button" class="text-body hover:text-heading">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" />
+                        </svg>
+                    </button>
+                </div>
+                <p class="text-xs text-body mb-3">Code: ITM-007 | Category: Home & Garden</p>
+                <div class="flex items-center justify-between mb-3">
+                    <span class="text-2xl font-bold text-heading">$98.75</span>
+                    <span class="text-sm text-body">Stock: <span class="font-semibold text-warning-strong">12</span></span>
+                </div>
+                <div class="flex gap-2">
+                    <button type="button"
+                        class="flex-1 text-white bg-brand hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium font-medium rounded-base text-sm px-3 py-2">
+                        Edit
+                    </button>
+                    <button type="button"
+                        class="text-danger-strong hover:text-danger-strong-hover border border-danger-subtle bg-danger-soft hover:bg-danger-medium focus:ring-4 focus:ring-danger-medium font-medium rounded-base text-sm px-3 py-2">
+                        Delete
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Item Card 8 -->
+        <div class="bg-primary-soft border border-default rounded-base overflow-hidden hover:shadow-lg transition-shadow">
+            <div class="relative">
+                <img class="w-full h-48 object-cover bg-neutral-tertiary"
+                    src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-8.jpg" alt="Product">
+                <span
+                    class="absolute top-2 right-2 text-xs font-medium px-2.5 py-1 rounded-full bg-success-soft text-success-strong border border-success-subtle">In
+                    Stock</span>
+            </div>
+            <div class="p-4">
+                <div class="flex items-start justify-between mb-2">
+                    <h5 class="text-lg font-semibold text-heading">Essential Pack</h5>
+                    <button type="button" class="text-body hover:text-heading">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" />
+                        </svg>
+                    </button>
+                </div>
+                <p class="text-xs text-body mb-3">Code: ITM-008 | Category: Clothing</p>
+                <div class="flex items-center justify-between mb-3">
+                    <span class="text-2xl font-bold text-heading">$65.99</span>
+                    <span class="text-sm text-body">Stock: <span class="font-semibold text-heading">167</span></span>
+                </div>
+                <div class="flex gap-2">
+                    <button type="button"
+                        class="flex-1 text-white bg-brand hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium font-medium rounded-base text-sm px-3 py-2">
+                        Edit
+                    </button>
+                    <button type="button"
+                        class="text-danger-strong hover:text-danger-strong-hover border border-danger-subtle bg-danger-soft hover:bg-danger-medium focus:ring-4 focus:ring-danger-medium font-medium rounded-base text-sm px-3 py-2">
+                        Delete
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pagination -->
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+        <span class="text-sm text-body">Showing <span class="font-semibold text-heading">1-8</span> of <span
+                class="font-semibold text-heading">573</span></span>
+        <nav aria-label="Page navigation">
+            <ul class="inline-flex -space-x-px text-sm">
+                <li>
+                    <a href="#"
+                        class="flex items-center justify-center px-3 h-8 ml-0 leading-tight text-body bg-neutral-secondary-medium border border-default-medium rounded-l-base hover:bg-neutral-tertiary hover:text-heading">Previous</a>
+                </li>
+                <li>
+                    <a href="#"
+                        class="flex items-center justify-center px-3 h-8 leading-tight text-white bg-brand border border-brand hover:bg-brand-strong">1</a>
+                </li>
+                <li>
+                    <a href="#"
+                        class="flex items-center justify-center px-3 h-8 leading-tight text-body bg-neutral-secondary-medium border border-default-medium hover:bg-neutral-tertiary hover:text-heading">2</a>
+                </li>
+                <li>
+                    <a href="#"
+                        class="flex items-center justify-center px-3 h-8 leading-tight text-body bg-neutral-secondary-medium border border-default-medium hover:bg-neutral-tertiary hover:text-heading">3</a>
+                </li>
+                <li>
+                    <a href="#"
+                        class="flex items-center justify-center px-3 h-8 leading-tight text-body bg-neutral-secondary-medium border border-default-medium rounded-r-base hover:bg-neutral-tertiary hover:text-heading">Next</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+
+<!-- Add/Edit Item Modal -->
+<div id="item-modal" tabindex="-1" aria-hidden="true"
+    class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+    <div class="relative p-4 w-full max-w-2xl max-h-full">
+        <!-- Modal content -->
+        <div class="relative bg-primary-soft rounded-base border border-default shadow-lg">
+            <!-- Modal header -->
+            <div class="flex items-center justify-between p-4 md:p-5 border-b border-default rounded-t">
+                <h3 class="text-xl font-semibold text-heading">
+                    Add New Item
+                </h3>
+                <button type="button" data-modal-hide="item-modal"
+                    class="text-body bg-transparent hover:bg-neutral-tertiary hover:text-heading rounded-base text-sm w-8 h-8 ms-auto inline-flex justify-center items-center">
+                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 14 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                    </svg>
+                    <span class="sr-only">Close modal</span>
+                </button>
+            </div>
+            <!-- Modal body -->
+            <div class="p-4 md:p-5 space-y-4">
+                <form class="space-y-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <!-- Item Name -->
+                        <div class="md:col-span-2">
+                            <label for="item-name" class="block mb-2 text-sm font-medium text-heading">Item
+                                Name</label>
+                            <input type="text" id="item-name"
+                                class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full p-2.5"
+                                placeholder="Enter item name" required>
+                        </div>
+                        <!-- Item Code -->
+                        <div>
+                            <label for="item-code" class="block mb-2 text-sm font-medium text-heading">Item
+                                Code</label>
+                            <input type="text" id="item-code"
+                                class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full p-2.5"
+                                placeholder="ITM-XXX" required>
+                        </div>
+                        <!-- Category -->
+                        <div>
+                            <label for="item-category"
+                                class="block mb-2 text-sm font-medium text-heading">Category</label>
+                            <select id="item-category"
+                                class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full p-2.5">
+                                <option selected>Select category</option>
+                                <option value="electronics">Electronics</option>
+                                <option value="clothing">Clothing</option>
+                                <option value="food">Food & Beverages</option>
+                                <option value="home">Home & Garden</option>
+                            </select>
+                        </div>
+                        <!-- Price -->
+                        <div>
+                            <label for="item-price" class="block mb-2 text-sm font-medium text-heading">Price</label>
+                            <div class="relative">
+                                <span
+                                    class="absolute inset-y-0 left-0 flex items-center pl-3 text-body pointer-events-none">$</span>
+                                <input type="number" id="item-price" step="0.01"
+                                    class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full pl-7 p-2.5"
+                                    placeholder="0.00" required>
+                            </div>
+                        </div>
+                        <!-- Stock Quantity -->
+                        <div>
+                            <label for="item-stock" class="block mb-2 text-sm font-medium text-heading">Stock
+                                Quantity</label>
+                            <input type="number" id="item-stock"
+                                class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full p-2.5"
+                                placeholder="0" required>
+                        </div>
+                        <!-- Image URL -->
+                        <div class="md:col-span-2">
+                            <label for="item-image" class="block mb-2 text-sm font-medium text-heading">Image
+                                URL</label>
+                            <input type="url" id="item-image"
+                                class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full p-2.5"
+                                placeholder="https://example.com/image.jpg">
+                        </div>
+                        <!-- Description -->
+                        <div class="md:col-span-2">
+                            <label for="item-description"
+                                class="block mb-2 text-sm font-medium text-heading">Description</label>
+                            <textarea id="item-description" rows="3"
+                                class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full p-2.5"
+                                placeholder="Enter item description..."></textarea>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- Modal footer -->
+            <div class="flex items-center justify-end gap-3 p-4 md:p-5 border-t border-default rounded-b">
+                <button type="button" data-modal-hide="item-modal"
+                    class="text-heading bg-neutral-secondary-medium border border-default hover:bg-neutral-tertiary focus:ring-4 focus:ring-neutral-tertiary font-medium rounded-base text-sm px-5 py-2.5">
+                    Cancel
+                </button>
+                <button type="button"
+                    class="text-white bg-brand hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium font-medium rounded-base text-sm px-5 py-2.5">
+                    Add Item
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
