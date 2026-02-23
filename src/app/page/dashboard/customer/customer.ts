@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { ApiResponse, CustomerModel } from '../../../../model/types';
-import { HttpClient } from '@angular/common/http';
+import { ApiErrorResponse, ApiResponse, CustomerModel } from '../../../../model/types';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import Swal from 'sweetalert2';
@@ -42,11 +42,11 @@ export class Customer implements OnInit {
     this.isModalOpen = false;
   }
 
-  getGeneratedId(){
-    this.http.get("http://localhost:8080/api/customers/get-customer-id", 
+  getGeneratedId() {
+    this.http.get("http://localhost:8080/api/customers/get-customer-id",
       { responseType: 'text' }).subscribe(response => {
-      this.customerObj.id = response;
-    })
+        this.customerObj.id = response;
+      })
   }
 
   getAll() {
@@ -57,20 +57,36 @@ export class Customer implements OnInit {
     });
   }
 
+  validationErrors: { [key: string]: string } = {};
+
   addCustomer() {
-    this.http.post<ApiResponse<void>>("http://localhost:8080/api/customers", this.customerObj).subscribe(response => {
-      if (response !== null) {
+    this.validationErrors = {};
+
+    this.http.post<ApiResponse<void>>("http://localhost:8080/api/customers", this.customerObj).subscribe({
+      next: (response) => {
         Swal.fire({
           title: response.message,
           text: `You added ${this.customerObj.name}!`,
           icon: "success"
         });
+      },
+      error: (error: HttpErrorResponse) => {
+        if (error.status === 400) {
+          const apiError: ApiErrorResponse = error.error;
+          this.validationErrors = apiError.errors;
+          this.cdr.detectChanges();
+        } else {
+          Swal.fire({
+            title: "Error",
+            text: "Something went wrong. Please try again.",
+            icon: "error"
+          });
+        }
       }
-      this.getAll();
     });
   }
 
-  deleteCustomer(id:String){
+  deleteCustomer(id: String) {
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",

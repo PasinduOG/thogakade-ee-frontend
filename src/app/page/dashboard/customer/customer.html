@@ -6,7 +6,7 @@
             <h1 class="text-2xl sm:text-3xl font-bold text-white">Customer Management</h1>
             <p class="text-sm text-gray-400 mt-1">Manage and track your customer database</p>
         </div>
-        <button type="button" (click)="openAddCustomerModal()"  
+        <button type="button" (click)="openAddCustomerModal()"
             class="text-white bg-linear-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 focus:ring-4 focus:ring-purple-500/50 font-medium rounded-xl text-sm px-5 py-2.5 inline-flex items-center transform hover:scale-105 transition-all shadow-lg">
             <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
@@ -108,13 +108,12 @@
                 </tbody>
             </table>
         </div>
-        
+
     </div>
 </div>
 
 <!-- Add/Edit Customer Modal -->
-<div id="customer-modal" tabindex="-1"
-    [ngClass]="isModalOpen ? 'flex' : 'hidden'"
+<div id="customer-modal" tabindex="-1" [ngClass]="isModalOpen ? 'flex' : 'hidden'"
     class="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full scrollbar-hidden bg-black/60">
     <div class="relative p-4 w-full max-w-2xl max-h-full">
         <!-- Modal content -->
@@ -175,7 +174,7 @@
                                 </label>
                                 <select id="customer-title" [(ngModel)]="customerObj.title"
                                     class="bg-gray-800 border border-gray-700 text-white text-sm rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 block w-full px-3 py-2.5 transition-all"
-                                    required>
+                                    [class.is-invalid]="validationErrors['title']" required>
                                     <option selected>Select</option>
                                     <option value="Mr">Mr</option>
                                     <option value="Mrs">Mrs</option>
@@ -183,6 +182,11 @@
                                     <option value="Dr">Dr</option>
                                     <option value="Prof">Prof</option>
                                 </select>
+                                @if (validationErrors['title']) {
+                                <div class="text-danger small mt-1">
+                                    {{ validationErrors['title'] }}
+                                </div>
+                                }
                             </div>
 
                             <!-- Full Name -->
@@ -199,8 +203,14 @@
                                         </svg>
                                     </div>
                                     <input type="text" id="customer-name" [(ngModel)]="customerObj.name"
+                                        [class.is-invalid]="validationErrors['name']"
                                         class="bg-gray-800 border border-gray-700 text-white text-sm rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 block w-full pl-10 pr-3 py-2.5 placeholder-gray-500 transition-all"
                                         placeholder="John Doe" required>
+                                    @if (validationErrors['name']) {
+                                    <div class="text-danger small mt-1">
+                                        {{ validationErrors['name'] }}
+                                    </div>
+                                    }
                                 </div>
                             </div>
 
@@ -218,8 +228,14 @@
                                         </svg>
                                     </div>
                                     <input type="date" id="customer-dob" [(ngModel)]="customerObj.dob"
+                                        [class.is-invalid]="validationErrors['dob']"
                                         class="bg-gray-800 border border-gray-700 text-white text-sm rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 block w-full pl-10 pr-3 py-2.5 transition-all"
                                         required>
+                                    @if (validationErrors['dob']) {
+                                    <div class="text-danger small mt-1">
+                                        {{ validationErrors['dob'] }}
+                                    </div>
+                                    }
                                 </div>
                             </div>
 
@@ -237,10 +253,15 @@
                                         </svg>
                                     </div>
                                     <input type="number" id="customer-salary" min="0" step="0.01"
-                                        [(ngModel)]="customerObj.salary"
+                                        [(ngModel)]="customerObj.salary" [class.is-invalid]="validationErrors['salary']"
                                         class="bg-gray-800 border border-gray-700 text-white text-sm rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 block w-full pl-10 pr-3 py-2.5 placeholder-gray-500 transition-all"
                                         placeholder="50000.00" required>
                                 </div>
+                                @if (validationErrors['salary']) { <!-- 👈 moved outside relative div -->
+                                <div class="text-red-400 text-xs mt-1">
+                                    {{ validationErrors['salary'] }}
+                                </div>
+                                }
                             </div>
                         </div>
                     </div>
@@ -273,8 +294,14 @@
                                         </svg>
                                     </div>
                                     <input type="text" id="customer-address" [(ngModel)]="customerObj.address"
+                                        [class.is-invalid]="validationErrors['address']"
                                         class="bg-gray-800 border border-gray-700 text-white text-sm rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 block w-full pl-10 pr-3 py-2.5 placeholder-gray-500 transition-all"
                                         placeholder="123 Main Street" required>
+                                    @if (validationErrors['address']) {
+                                    <div class="text-danger small mt-1">
+                                        {{ validationErrors['address'] }}
+                                    </div>
+                                    }
                                 </div>
                             </div>
 
@@ -292,8 +319,14 @@
                                         </svg>
                                     </div>
                                     <input type="text" id="customer-city" [(ngModel)]="customerObj.city"
+                                        [class.is-invalid]="validationErrors['city']"
                                         class="bg-gray-800 border border-gray-700 text-white text-sm rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 block w-full pl-10 pr-3 py-2.5 placeholder-gray-500 transition-all"
                                         placeholder="Colombo" required>
+                                    @if (validationErrors['city']) {
+                                    <div class="text-danger small mt-1">
+                                        {{ validationErrors['city'] }}
+                                    </div>
+                                    }
                                 </div>
                             </div>
 
@@ -303,6 +336,7 @@
                                     Province <span class="text-red-400">*</span>
                                 </label>
                                 <select id="customer-province" [(ngModel)]="customerObj.province"
+                                    [class.is-invalid]="validationErrors['province']"
                                     class="bg-gray-800 border border-gray-700 text-white text-sm rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 block w-full px-3 py-2.5 transition-all"
                                     required>
                                     <option selected>Select</option>
@@ -316,6 +350,11 @@
                                     <option value="Uva">Uva</option>
                                     <option value="Sabaragamuwa">Sabaragamuwa</option>
                                 </select>
+                                @if (validationErrors['province']) {
+                                <div class="text-danger small mt-1">
+                                    {{ validationErrors['province'] }}
+                                </div>
+                                }
                             </div>
 
                             <!-- Postal Code -->
@@ -332,8 +371,14 @@
                                         </svg>
                                     </div>
                                     <input type="text" id="customer-postal-code" [(ngModel)]="customerObj.postalCode"
+                                        [class.is-invalid]="validationErrors['postalCode']"
                                         class="bg-gray-800 border border-gray-700 text-white text-sm rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 block w-full pl-10 pr-3 py-2.5 placeholder-gray-500 transition-all"
                                         placeholder="10100" required>
+                                    @if (validationErrors['postalCode']) {
+                                    <div class="text-danger small mt-1">
+                                        {{ validationErrors['postalCode'] }}
+                                    </div>
+                                    }
                                 </div>
                             </div>
                         </div>
