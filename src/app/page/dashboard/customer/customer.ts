@@ -31,6 +31,7 @@ export class Customer implements OnInit {
 
   ngOnInit(): void {
     this.getAll();
+    this.getGeneratedId();
   }
 
   openAddCustomerModal(): void {
@@ -41,10 +42,18 @@ export class Customer implements OnInit {
     this.isModalOpen = false;
   }
 
+  getGeneratedId(){
+    this.http.get("http://localhost:8080/api/customers/get-customer-id", 
+      { responseType: 'text' }).subscribe(response => {
+      this.customerObj.id = response;
+    })
+  }
+
   getAll() {
     this.http.get<ApiResponse<CustomerModel[]>>("http://localhost:8080/api/customers").subscribe(response => {
       this.customerList = response.content;
       this.cdr.detectChanges();
+      this.getGeneratedId();
     });
   }
 
