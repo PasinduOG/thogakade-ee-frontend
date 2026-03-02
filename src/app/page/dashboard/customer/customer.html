@@ -173,8 +173,8 @@
                                     Title <span class="text-red-400">*</span>
                                 </label>
                                 <select id="customer-title" [(ngModel)]="customerObj.title"
-                                    class="bg-gray-800 border border-gray-700 text-white text-sm rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 block w-full px-3 py-2.5 transition-all"
-                                    [class.is-invalid]="validationErrors['title']" required>
+                                    class="bg-gray-800 border text-white text-sm rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 block w-full px-3 py-2.5 transition-all"
+                                    [ngClass]="validationErrors['title'] ? 'border-red-500' : 'border-gray-700'" required>
                                     <option selected>Select</option>
                                     <option value="Mr">Mr</option>
                                     <option value="Mrs">Mrs</option>
@@ -183,7 +183,7 @@
                                     <option value="Prof">Prof</option>
                                 </select>
                                 @if (validationErrors['title']) {
-                                <div class="text-danger small mt-1">
+                                <div class="text-red-400 text-sm mt-1">
                                     {{ validationErrors['title'] }}
                                 </div>
                                 }
@@ -203,15 +203,15 @@
                                         </svg>
                                     </div>
                                     <input type="text" id="customer-name" [(ngModel)]="customerObj.name"
-                                        [class.is-invalid]="validationErrors['name']"
-                                        class="bg-gray-800 border border-gray-700 text-white text-sm rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 block w-full pl-10 pr-3 py-2.5 placeholder-gray-500 transition-all"
+                                        class="bg-gray-800 border text-white text-sm rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 block w-full pl-10 pr-3 py-2.5 placeholder-gray-500 transition-all"
+                                        [ngClass]="validationErrors['name'] ? 'border-red-500' : 'border-gray-700'"
                                         placeholder="John Doe" required>
-                                    @if (validationErrors['name']) {
-                                    <div class="text-danger small mt-1">
-                                        {{ validationErrors['name'] }}
-                                    </div>
-                                    }
                                 </div>
+                                @if (validationErrors['name']) {
+                                <div class="text-red-400 text-sm mt-1">
+                                    {{ validationErrors['name'] }}
+                                </div>
+                                }
                             </div>
 
                             <!-- Date of Birth -->
@@ -228,15 +228,15 @@
                                         </svg>
                                     </div>
                                     <input type="date" id="customer-dob" [(ngModel)]="customerObj.dob"
-                                        [class.is-invalid]="validationErrors['dob']"
-                                        class="bg-gray-800 border border-gray-700 text-white text-sm rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 block w-full pl-10 pr-3 py-2.5 transition-all"
+                                        class="bg-gray-800 border text-white text-sm rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 block w-full pl-10 pr-3 py-2.5 transition-all"
+                                        [ngClass]="validationErrors['dob'] ? 'border-red-500' : 'border-gray-700'"
                                         required>
-                                    @if (validationErrors['dob']) {
-                                    <div class="text-danger small mt-1">
-                                        {{ validationErrors['dob'] }}
-                                    </div>
-                                    }
                                 </div>
+                                @if (validationErrors['dob']) {
+                                <div class="text-red-400 text-sm mt-1">
+                                    {{ validationErrors['dob'] }}
+                                </div>
+                                }
                             </div>
 
                             <!-- Salary -->
@@ -253,12 +253,13 @@
                                         </svg>
                                     </div>
                                     <input type="number" id="customer-salary" min="0" step="0.01"
-                                        [(ngModel)]="customerObj.salary" [class.is-invalid]="validationErrors['salary']"
-                                        class="bg-gray-800 border border-gray-700 text-white text-sm rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 block w-full pl-10 pr-3 py-2.5 placeholder-gray-500 transition-all"
+                                        [(ngModel)]="customerObj.salary"
+                                        class="bg-gray-800 border text-white text-sm rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 block w-full pl-10 pr-3 py-2.5 placeholder-gray-500 transition-all"
+                                        [ngClass]="validationErrors['salary'] ? 'border-red-500' : 'border-gray-700'"
                                         placeholder="50000.00" required>
                                 </div>
-                                @if (validationErrors['salary']) { <!-- 👈 moved outside relative div -->
-                                <div class="text-red-400 text-xs mt-1">
+                                @if (validationErrors['salary']) {
+                                <div class="text-red-400 text-sm mt-1">
                                     {{ validationErrors['salary'] }}
                                 </div>
                                 }
@@ -294,15 +295,15 @@
                                         </svg>
                                     </div>
                                     <input type="text" id="customer-address" [(ngModel)]="customerObj.address"
-                                        [class.is-invalid]="validationErrors['address']"
-                                        class="bg-gray-800 border border-gray-700 text-white text-sm rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 block w-full pl-10 pr-3 py-2.5 placeholder-gray-500 transition-all"
+                                        class="bg-gray-800 border text-white text-sm rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 block w-full pl-10 pr-3 py-2.5 placeholder-gray-500 transition-all"
+                                        [ngClass]="validationErrors['address'] ? 'border-red-500' : 'border-gray-700'"
                                         placeholder="123 Main Street" required>
-                                    @if (validationErrors['address']) {
-                                    <div class="text-danger small mt-1">
-                                        {{ validationErrors['address'] }}
-                                    </div>
-                                    }
                                 </div>
+                                @if (validationErrors['address']) {
+                                <div class="text-red-400 text-sm mt-1">
+                                    {{ validationErrors['address'] }}
+                                </div>
+                                }
                             </div>
 
                             <!-- City -->
@@ -319,15 +320,15 @@
                                         </svg>
                                     </div>
                                     <input type="text" id="customer-city" [(ngModel)]="customerObj.city"
-                                        [class.is-invalid]="validationErrors['city']"
-                                        class="bg-gray-800 border border-gray-700 text-white text-sm rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 block w-full pl-10 pr-3 py-2.5 placeholder-gray-500 transition-all"
+                                        class="bg-gray-800 border text-white text-sm rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 block w-full pl-10 pr-3 py-2.5 placeholder-gray-500 transition-all"
+                                        [ngClass]="validationErrors['city'] ? 'border-red-500' : 'border-gray-700'"
                                         placeholder="Colombo" required>
-                                    @if (validationErrors['city']) {
-                                    <div class="text-danger small mt-1">
-                                        {{ validationErrors['city'] }}
-                                    </div>
-                                    }
                                 </div>
+                                @if (validationErrors['city']) {
+                                <div class="text-red-400 text-sm mt-1">
+                                    {{ validationErrors['city'] }}
+                                </div>
+                                }
                             </div>
 
                             <!-- Province -->
@@ -336,9 +337,8 @@
                                     Province <span class="text-red-400">*</span>
                                 </label>
                                 <select id="customer-province" [(ngModel)]="customerObj.province"
-                                    [class.is-invalid]="validationErrors['province']"
-                                    class="bg-gray-800 border border-gray-700 text-white text-sm rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 block w-full px-3 py-2.5 transition-all"
-                                    required>
+                                    class="bg-gray-800 border text-white text-sm rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 block w-full px-3 py-2.5 transition-all"
+                                    [ngClass]="validationErrors['province'] ? 'border-red-500' : 'border-gray-700'" required>
                                     <option selected>Select</option>
                                     <option value="Western">Western</option>
                                     <option value="Central">Central</option>
@@ -351,7 +351,7 @@
                                     <option value="Sabaragamuwa">Sabaragamuwa</option>
                                 </select>
                                 @if (validationErrors['province']) {
-                                <div class="text-danger small mt-1">
+                                <div class="text-red-400 text-sm mt-1">
                                     {{ validationErrors['province'] }}
                                 </div>
                                 }
@@ -371,15 +371,15 @@
                                         </svg>
                                     </div>
                                     <input type="text" id="customer-postal-code" [(ngModel)]="customerObj.postalCode"
-                                        [class.is-invalid]="validationErrors['postalCode']"
-                                        class="bg-gray-800 border border-gray-700 text-white text-sm rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 block w-full pl-10 pr-3 py-2.5 placeholder-gray-500 transition-all"
+                                        class="bg-gray-800 border text-white text-sm rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 block w-full pl-10 pr-3 py-2.5 placeholder-gray-500 transition-all"
+                                        [ngClass]="validationErrors['postalCode'] ? 'border-red-500' : 'border-gray-700'"
                                         placeholder="10100" required>
-                                    @if (validationErrors['postalCode']) {
-                                    <div class="text-danger small mt-1">
-                                        {{ validationErrors['postalCode'] }}
-                                    </div>
-                                    }
                                 </div>
+                                @if (validationErrors['postalCode']) {
+                                <div class="text-red-400 text-sm mt-1">
+                                    {{ validationErrors['postalCode'] }}
+                                </div>
+                                }
                             </div>
                         </div>
                     </div>
