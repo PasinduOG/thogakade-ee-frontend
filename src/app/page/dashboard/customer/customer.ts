@@ -27,7 +27,7 @@ export class Customer implements OnInit {
 
   isModalOpen = false;
 
-  constructor(private http: HttpClient, private cdr: ChangeDetectorRef) { }
+  constructor(private readonly http: HttpClient, private readonly cdr: ChangeDetectorRef) { }
 
   ngOnInit(): void {
     this.getAll();
@@ -43,9 +43,8 @@ export class Customer implements OnInit {
   }
 
   getGeneratedId() {
-    this.http.get("http://localhost:8080/api/customers/get-customer-id",
-      { responseType: 'text' }).subscribe(response => {
-        this.customerObj.id = response;
+    this.http.get<ApiResponse<string>>("http://localhost:8080/api/customers/get-customer-id").subscribe(response => {
+        this.customerObj.id = response.content;
       })
   }
 
@@ -84,9 +83,10 @@ export class Customer implements OnInit {
         }
       }
     });
+    this.cdr.detectChanges();
   }
 
-  deleteCustomer(id: String) {
+  deleteCustomer(id: string) {
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
