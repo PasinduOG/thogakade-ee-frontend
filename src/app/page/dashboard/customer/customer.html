@@ -172,10 +172,10 @@
                                 <label for="customer-title" class="block mb-2 text-sm font-medium text-gray-300">
                                     Title <span class="text-red-400">*</span>
                                 </label>
-                                <select id="customer-title" [(ngModel)]="customerObj.title"
+                                <select id="customer-title" [(ngModel)]="customerObj.title" (ngModelChange)="clearError('title')"
                                     class="bg-gray-800 border text-white text-sm rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 block w-full px-3 py-2.5 transition-all"
                                     [ngClass]="validationErrors['title'] ? 'border-red-500' : 'border-gray-700'" required>
-                                    <option selected>Select</option>
+                                    <option value="" selected>Select</option>
                                     <option value="Mr">Mr</option>
                                     <option value="Mrs">Mrs</option>
                                     <option value="Ms">Ms</option>
@@ -202,7 +202,7 @@
                                                 d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                                         </svg>
                                     </div>
-                                    <input type="text" id="customer-name" [(ngModel)]="customerObj.name"
+                                    <input type="text" id="customer-name" [(ngModel)]="customerObj.name" (ngModelChange)="clearError('name')"
                                         class="bg-gray-800 border text-white text-sm rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 block w-full pl-10 pr-3 py-2.5 placeholder-gray-500 transition-all"
                                         [ngClass]="validationErrors['name'] ? 'border-red-500' : 'border-gray-700'"
                                         placeholder="John Doe" required>
@@ -227,7 +227,7 @@
                                                 d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                                         </svg>
                                     </div>
-                                    <input type="date" id="customer-dob" [(ngModel)]="customerObj.dob"
+                                    <input type="date" id="customer-dob" [(ngModel)]="customerObj.dob" (ngModelChange)="clearError('dob')"
                                         class="bg-gray-800 border text-white text-sm rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 block w-full pl-10 pr-3 py-2.5 transition-all"
                                         [ngClass]="validationErrors['dob'] ? 'border-red-500' : 'border-gray-700'"
                                         required>
@@ -253,7 +253,7 @@
                                         </svg>
                                     </div>
                                     <input type="number" id="customer-salary" min="0" step="0.01"
-                                        [(ngModel)]="customerObj.salary"
+                                        [(ngModel)]="customerObj.salary" (ngModelChange)="clearError('salary')"
                                         class="bg-gray-800 border text-white text-sm rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 block w-full pl-10 pr-3 py-2.5 placeholder-gray-500 transition-all"
                                         [ngClass]="validationErrors['salary'] ? 'border-red-500' : 'border-gray-700'"
                                         placeholder="50000.00" required>
@@ -294,7 +294,7 @@
                                                 d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                                         </svg>
                                     </div>
-                                    <input type="text" id="customer-address" [(ngModel)]="customerObj.address"
+                                    <input type="text" id="customer-address" [(ngModel)]="customerObj.address" (ngModelChange)="clearError('address')"
                                         class="bg-gray-800 border text-white text-sm rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 block w-full pl-10 pr-3 py-2.5 placeholder-gray-500 transition-all"
                                         [ngClass]="validationErrors['address'] ? 'border-red-500' : 'border-gray-700'"
                                         placeholder="123 Main Street" required>
@@ -319,7 +319,7 @@
                                                 d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                                         </svg>
                                     </div>
-                                    <input type="text" id="customer-city" [(ngModel)]="customerObj.city"
+                                    <input type="text" id="customer-city" [(ngModel)]="customerObj.city" (ngModelChange)="clearError('city')"
                                         class="bg-gray-800 border text-white text-sm rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 block w-full pl-10 pr-3 py-2.5 placeholder-gray-500 transition-all"
                                         [ngClass]="validationErrors['city'] ? 'border-red-500' : 'border-gray-700'"
                                         placeholder="Colombo" required>
@@ -336,10 +336,10 @@
                                 <label for="customer-province" class="block mb-2 text-sm font-medium text-gray-300">
                                     Province <span class="text-red-400">*</span>
                                 </label>
-                                <select id="customer-province" [(ngModel)]="customerObj.province"
+                                <select id="customer-province" [(ngModel)]="customerObj.province" (ngModelChange)="clearError('province')"
                                     class="bg-gray-800 border text-white text-sm rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 block w-full px-3 py-2.5 transition-all"
                                     [ngClass]="validationErrors['province'] ? 'border-red-500' : 'border-gray-700'" required>
-                                    <option selected>Select</option>
+                                    <option value="" selected>Select</option>
                                     <option value="Western">Western</option>
                                     <option value="Central">Central</option>
                                     <option value="Southern">Southern</option>
@@ -370,7 +370,7 @@
                                                 d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                                         </svg>
                                     </div>
-                                    <input type="text" id="customer-postal-code" [(ngModel)]="customerObj.postalCode"
+                                    <input type="text" id="customer-postal-code" [(ngModel)]="customerObj.postalCode" (ngModelChange)="clearError('postalCode')"
                                         class="bg-gray-800 border text-white text-sm rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 block w-full pl-10 pr-3 py-2.5 placeholder-gray-500 transition-all"
                                         [ngClass]="validationErrors['postalCode'] ? 'border-red-500' : 'border-gray-700'"
                                         placeholder="10100" required>
