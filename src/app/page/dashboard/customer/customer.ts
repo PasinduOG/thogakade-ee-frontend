@@ -15,14 +15,14 @@ export class Customer implements OnInit {
   customerList: CustomerModel[] = [];
   customerObj: CustomerModel = {
     id: '',
-    title: '',
+    title: 'Select',
     name: '',
     dob: '',
     salary: 0,
     address: '',
     city: '',
-    province: '',
-    postalCode: ''
+    province: 'Select',
+    postalCode: '0'
   };
 
   isModalOpen = false;
