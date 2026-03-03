@@ -15,13 +15,13 @@ export class Customer implements OnInit {
   customerList: CustomerModel[] = [];
   customerObj: CustomerModel = {
     id: '',
-    title: 'Select',
+    title: '',
     name: '',
     dob: '',
     salary: 0,
     address: '',
     city: '',
-    province: 'Select',
+    province: '',
     postalCode: '0'
   };
 
@@ -58,6 +58,13 @@ export class Customer implements OnInit {
 
   validationErrors: { [key: string]: string } = {};
 
+  // Clear validations from the fields if data filling in the field
+  clearError(field: string): void {
+    if (this.validationErrors[field]) {
+      delete this.validationErrors[field];
+    }
+  }
+
   addCustomer() {
     this.validationErrors = {};
 
@@ -68,6 +75,8 @@ export class Customer implements OnInit {
           text: `You added ${this.customerObj.name}!`,
           icon: "success"
         });
+        this.closeAddCustomerModal();
+        this.getAll();
       },
       error: (error: HttpErrorResponse) => {
         if (error.status === 400) {
@@ -83,7 +92,6 @@ export class Customer implements OnInit {
         }
       }
     });
-    this.cdr.detectChanges();
   }
 
   deleteCustomer(id: string) {
