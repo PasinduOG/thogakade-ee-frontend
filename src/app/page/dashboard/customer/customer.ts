@@ -22,7 +22,7 @@ export class Customer implements OnInit {
     address: '',
     city: '',
     province: '',
-    postalCode: '0'
+    postalCode: ''
   };
 
   isModalOpen = false;
