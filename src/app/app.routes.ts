@@ -8,6 +8,11 @@ import { Overview } from './page/dashboard/overview/overview';
 
 export const routes: Routes = [
     {
+        path: "",
+        redirectTo: "dashboard",
+        pathMatch: "full"
+    },
+    {
         path: "login",
         component: Login
     },
